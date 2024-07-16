@@ -25,6 +25,7 @@ const initialState: MoviesState = {
 type MoviesReducer = Reducer<MoviesState, MoviesAction>;
 
 const reducer: MoviesReducer = (state = initialState, action) => {
+  console.log('Executing reducer with action:', action.type, '\n\n');
   switch (action.type) {
     case 'fetch_movies':
       return {...state, loading: true, page: 1, error: null};
