@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   useWindowDimensions,
@@ -33,7 +34,9 @@ const MovieDetails = React.memo<MovieDetailsProps>(({modal: {params}}) => {
           Дата выхода фильма:
           {dayjs(params.movie.release_date, 'YYYY-MM-DD').format('DD MMM YYYY')}
         </Text>
-        <Text style={styles.overview}>{params.movie.overview}</Text>
+        <ScrollView>
+          <Text style={styles.overview}>{params.movie.overview}</Text>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -51,6 +54,7 @@ const styles = StyleSheet.create({
 
   content: {
     paddingTop: 8,
+    maxHeight: 300,
   },
 
   posterContainer: {

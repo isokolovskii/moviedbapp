@@ -1,6 +1,8 @@
 import React from 'react';
-import {Image, ImageStyle, StyleProp, StyleSheet} from 'react-native';
+import {type StyleProp, StyleSheet} from 'react-native';
 import {TMDB_IMAGE_URL} from '../../config';
+import {type ImageStyle} from 'react-native-fast-image';
+import LoadingImage from './LoadingImage';
 
 interface PosterProps {
   url: string;
@@ -9,7 +11,7 @@ interface PosterProps {
 
 const Backdrop = React.memo<PosterProps>(({url, style}) => {
   return (
-    <Image
+    <LoadingImage
       source={{uri: `${TMDB_IMAGE_URL}/${url}`}}
       style={[styles.poster, style]}
     />
