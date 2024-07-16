@@ -7,7 +7,7 @@ interface PosterProps {
   style?: StyleProp<ImageStyle>;
 }
 
-const Poster = React.memo<PosterProps>(({url, style}) => {
+const Backdrop = React.memo<PosterProps>(({url, style}) => {
   return (
     <Image
       source={{uri: `${TMDB_IMAGE_URL}/${url}`}}
@@ -18,8 +18,8 @@ const Poster = React.memo<PosterProps>(({url, style}) => {
 
 const styles = StyleSheet.create({
   poster: {
-    aspectRatio: 2 / 3,
+    aspectRatio: 16 / 9,
   },
 });
 
-export default Poster;
+export default Backdrop;

@@ -1,19 +1,27 @@
-import type {ListRenderItem} from '@shopify/flash-list';
 import type {Movie} from '../../api';
 import React from 'react';
-import {Poster} from './index.ts';
-import {StyleSheet, Text, View} from 'react-native';
+import Poster from './Poster';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {useModal} from 'react-native-modalfy';
 
-interface ItemComponentProps extends ListRenderItem<Movie> {}
+interface ItemComponentProps {
+  movie: Movie;
+}
 
-const Item = React.memo<ItemComponentProps>(({item}) => {
+const Item = React.memo<ItemComponentProps>(({movie}) => {
+  const {openModal} = useModal();
+
+  const onPress = React.useCallback(() => {
+    openModal('MovieDetails', {movie});
+  }, [movie, openModal]);
+
   return (
-    <View style={styles.item}>
-      <Poster url={item.poster_path} style={styles.poster} />
+    <TouchableOpacity onPress={onPress} style={styles.item}>
+      <Poster url={movie.poster_path} style={styles.poster} />
       <Text numberOfLines={2} style={styles.text}>
-        {item.title}
+        {movie.title}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 });
 

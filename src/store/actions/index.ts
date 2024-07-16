@@ -23,15 +23,9 @@ interface FetchMoreAction {
   type: ActionType.FETCH_MORE;
 }
 
-interface SelectListTypeAction {
-  type: ActionType.SELECT_LIST_TYPE;
-  payload: keyof typeof MOVIES_API_ENDPOINTS;
-}
-
 export type MoviesAction =
   | FetchMoviesAction
   | RefreshMoviesAction
   | FetchSuccessAction
   | FetchErrorAction
-  | FetchMoreAction
-  | SelectListTypeAction;
+  | FetchMoreAction;

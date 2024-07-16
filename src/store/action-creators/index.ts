@@ -23,7 +23,7 @@ export const fetchMovies = () => {
     dispatch({type: ActionType.FETCH_MOVIES});
     try {
       const response = await httpClient.get<PaginatedMoviesResult>(
-        MOVIES_API_ENDPOINTS[getState().movies.listType],
+        MOVIES_API_ENDPOINTS.POPULAR,
         <MoviesListRequest>{page: 1, language: 'ru-RU'},
       );
       console.log(
@@ -67,7 +67,7 @@ export const refreshMovies = () => {
     for (let i = 1; i <= currentPage; i++) {
       try {
         const response = await httpClient.get<PaginatedMoviesResult>(
-          MOVIES_API_ENDPOINTS[getState().movies.listType],
+          MOVIES_API_ENDPOINTS.POPULAR,
           <MoviesListRequest>{page: i, language: 'ru-RU'},
         );
 
@@ -114,7 +114,7 @@ export const fetchMoreMovies = () => {
 
     try {
       const response = await httpClient.get<PaginatedMoviesResult>(
-        MOVIES_API_ENDPOINTS[getState().movies.listType],
+        MOVIES_API_ENDPOINTS.POPULAR,
         <MoviesListRequest>{page: currentPage, language: 'ru-RU'},
       );
 
@@ -148,13 +148,5 @@ export const fetchMoreMovies = () => {
         dispatch({type: ActionType.FETCH_ERROR, error: err.message});
       }
     }
-  };
-};
-
-export const selectListType = (listType: keyof typeof MOVIES_API_ENDPOINTS) => {
-  return (dispatch: Dispatch<MoviesAction>) => {
-    console.log('Changed list type', listType);
-    dispatch({type: ActionType.SELECT_LIST_TYPE, payload: listType});
-    fetchMovies();
   };
 };

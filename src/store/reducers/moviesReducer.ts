@@ -9,7 +9,6 @@ interface MoviesState {
   page: number;
   data: Movie[];
   error: string | null;
-  listType: keyof typeof MOVIES_API_ENDPOINTS;
 }
 
 const initialState: MoviesState = {
@@ -19,7 +18,6 @@ const initialState: MoviesState = {
   page: 1,
   data: [],
   error: null,
-  listType: 'POPULAR',
 };
 
 type MoviesReducer = Reducer<MoviesState, MoviesAction>;
@@ -50,8 +48,6 @@ const reducer: MoviesReducer = (state = initialState, action) => {
         fetchingMore: false,
         error: action.error,
       };
-    case 'select_list_type':
-      return {...state, listType: action.payload};
     default:
       return state;
   }

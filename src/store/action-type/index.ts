@@ -4,5 +4,4 @@ export enum ActionType {
   FETCH_SUCCESS = 'fetch_success',
   FETCH_ERROR = 'fetch_error',
   FETCH_MORE = 'fetch_more',
-  SELECT_LIST_TYPE = 'select_list_type',
 }

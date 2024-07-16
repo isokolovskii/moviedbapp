@@ -58,7 +58,7 @@ const MoviesList: React.FC = () => {
     <SafeAreaView style={styles.container}>
       <FlashList
         numColumns={2}
-        renderItem={props => <Item {...props} />}
+        renderItem={item => <Item movie={item.item} />}
         keyExtractor={item => `${item.original_title}-${item.id}`}
         onEndReached={fetchMoreMovies}
         onEndReachedThreshold={0.2}
